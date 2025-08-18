@@ -1,6 +1,8 @@
+#__package__ = "src"
+
 from datetime import datetime
 
-from masks import get_mask_account, get_mask_card_number
+from .masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(data: str) -> str:
@@ -11,9 +13,9 @@ def mask_account_card(data: str) -> str:
         if letter.isalnum():
             data_number += letter
     if len(data_number) > 16:
-        return get_mask_account(data_number)
+        return get_mask_account(int(data_number))
     else:
-        return get_mask_card_number(data_number)
+        return get_mask_card_number(int(data_number))
 
 
 def get_date(date_: str) -> str:
