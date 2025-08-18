@@ -35,6 +35,8 @@ exclude = '''
 (
   /(
       \.git
+      \.idea
+      \.venv
   )/
 )
 '''
