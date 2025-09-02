@@ -27,3 +27,17 @@ def test_get_mask_card_number_negative_non():
         get_mask_card_number()
 
     assert str(info.value) == "Указан не верный номер карты"
+
+
+@pytest.mark.parametrize('account, result', [(64686473678894779589, '**9589'),
+                                             (73654108430135874305, '**4305'),
+                                             ])
+def test_get_mask_account_positive(account, result):
+    assert get_mask_account(account) == result
+
+
+def test_get_mask_account_negative_non():
+    with pytest.raises(TypeError) as info:
+        get_mask_account()
+
+    assert str(info.value) == "Не верный ввод"
