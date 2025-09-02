@@ -18,7 +18,7 @@ def get_mask_account(number_account: int = None) -> str:
     """Принимает НОМЕР СЧЕТА в виде числа (int)
     и возвращает ее маску в виде строки (str)."""
     if not isinstance(number_account, int):
-        raise TypeError ("Не верный ввод")
+        raise TypeError ("Ошибка ввода")
     conv_number_account = str(number_account)
     return f"**{conv_number_account[-4:]}"
 

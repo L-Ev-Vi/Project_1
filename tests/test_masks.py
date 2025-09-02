@@ -49,4 +49,4 @@ def test_get_mask_account_negative_non():
     with pytest.raises(TypeError) as info:
         get_mask_account()
 
-    assert str(info.value) == "Не верный ввод"
+    assert str(info.value) == "Ошибка ввода"
