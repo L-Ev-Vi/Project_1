@@ -6,13 +6,22 @@ from src.masks import get_mask_card_number, get_mask_account
 
 
 @pytest.mark.parametrize('number_card, result', [(1596837868705199, '1596 83** **** 5199'),
-                                                 (7158300734726758, '7158 30** **** 6758'),
-                                                 (6571529785965, '6571 **** **965'),
-                                                 (65715, '***15'),
-                                                 (6571552397456239821, '6571 55** **** **** 821')
+                                                 (7158300734726758, '7158 30** **** 6758')
                                                  ])
 def test_get_mask_card_number_positive(number_card, result):
     assert get_mask_card_number(number_card) == result
+
+
+def test_get_mask_card_number_old_standard(old_standard):
+    assert get_mask_card_number(old_standard) == '6571 **** **965'
+
+
+def test_get_mask_card_number_american_express(american_express):
+    assert get_mask_card_number(american_express) == '***15'
+
+
+def test_get_mask_card_number_union_pay(union_pay):
+    assert get_mask_card_number(union_pay) == '6571 55** **** **** 821'
 
 
 def test_get_mask_card_number_negative():
