@@ -1,9 +1,11 @@
+from typing import Any, Optional
+
 from dateutil import parser
 
 from .masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(data: str = None) -> str:
+def mask_account_card(data: Optional[str] = None) -> str:
     """Принимать одну строку, содержащую тип и номер карты или счета.
     Возвращать строку с замаскированным номером."""
     if not isinstance(data, str):
@@ -24,7 +26,7 @@ def mask_account_card(data: str = None) -> str:
             return data_name + get_mask_card_number(int(data_number))
 
 
-def get_date(date_: str = None) -> str:
+def get_date(date_: Optional[str] = None) -> Any:
     """Принимает на вход строку с датой в формате '2024-03-11T02:26:18.671407'
     и возвращает строку с датой в формате 'ДД.ММ.ГГГГ'"""
     if not isinstance(date_, str):

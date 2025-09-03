@@ -1,8 +1,11 @@
-def get_mask_card_number(number_card: int = None) -> str:
+from typing import Optional
+
+
+def get_mask_card_number(number_card: Optional[int] = None) -> str:
     """Принимает НОМЕР КАРТЫ различных форматов в виде числа (int)
     и возвращает ее маску в виде строки (str)."""
     if not isinstance(number_card, int):
-        raise TypeError ("Указан не верный номер карты")
+        raise TypeError("Указан не верный номер карты")
     conv_number_card_str = str(number_card)
     if len(conv_number_card_str) == 19:
         return f"{conv_number_card_str[:4]} {conv_number_card_str[4:6]}** **** **** {conv_number_card_str[-3:]}"
@@ -14,11 +17,10 @@ def get_mask_card_number(number_card: int = None) -> str:
         return f"{conv_number_card_str[:4]} {conv_number_card_str[4:6]}** **** {conv_number_card_str[-4:]}"
 
 
-def get_mask_account(number_account: int = None) -> str:
+def get_mask_account(number_account: Optional[int] = None) -> str:
     """Принимает НОМЕР СЧЕТА в виде числа (int)
     и возвращает ее маску в виде строки (str)."""
     if not isinstance(number_account, int):
-        raise TypeError ("Ошибка ввода")
+        raise TypeError("Ошибка ввода")
     conv_number_account = str(number_account)
     return f"**{conv_number_account[-4:]}"
-
