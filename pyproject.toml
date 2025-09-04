@@ -30,7 +30,7 @@ python-dateutil = "^2.9.0.post0"
 [tool.mypy]
 disallow_untyped_defs = true
 warn_return_any = true
-exclude = 'venv, tests'
+exclude = ['.venv','tests', 'idea', 'git']
 
 [tool.isort]
 profile = "black"
