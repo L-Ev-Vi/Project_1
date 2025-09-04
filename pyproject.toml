@@ -21,10 +21,16 @@ black = "^25.1.0"
 mypy = "^1.17.1"
 isort = "^6.0.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+python-dateutil = "^2.9.0.post0"
+
 [tool.mypy]
 disallow_untyped_defs = true
 warn_return_any = true
-exclude = 'venv'
+exclude = ['.venv','tests', 'idea', 'git']
 
 [tool.isort]
 profile = "black"
