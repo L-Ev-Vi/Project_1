@@ -1,3 +1,5 @@
+import pytest
+
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
@@ -53,18 +55,22 @@ def test_filter_by_currency_RUB(list_transactions):
     # assert next(gen) == {}
 
 
-def test_filter_by_currency_zero():
-    resul = {}
-    gen = filter_by_currency([], "USD")
-    assert next(gen) == resul
-    # assert next(gen) == {}
-    # assert next(gen) == resul
+@pytest.mark.parametrize('list_, currency, result',
+                         [
+                             ([], "USD", {}),
+                             ([{
+                                 "id": 142264268,
+                                 "state": "EXECUTED",
+                                 "date": "2019-04-04T23:20:05.206878",
+                                 "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+                                 "description": "Перевод со счета на счет",
+                                 "from": "Счет 19708645243227258542",
+                                 "to": "Счет 75651667383060284188",
+                             }], "EUR", {})])
+def test_filter_by_currency_zero(list_, currency, result):
+    gen = filter_by_currency(list_, currency)
 
-
-def test_filter_by_currency_non(list_transactions):
-    resul = {}
-    gen = filter_by_currency(list_transactions, "EUR")
-    assert next(gen) == resul
+    assert next(gen) == result
 
 
 def test_transaction_descriptions(list_transactions):
@@ -84,23 +90,17 @@ def test_transaction_descriptions_zero():
     assert next(gen) == []
 
 
-def test_card_number_generator():
-    gen = card_number_generator(1, 1)
-    result = "0000 0000 0000 0001"
-
-    assert next(gen) == result
-
-
-def test_card_number_generator_zero():
-    gen = card_number_generator(0, 1)
-    result = "0000 0000 0000 0001"
-
-    assert next(gen) == result
-
-
-def test_card_number_generator_negative():
-    gen = card_number_generator(-5, 0)
-    result = "0000 0000 0000 0001"
+@pytest.mark.parametrize('start, stop, result',
+                         [
+                             (1, 1, "0000 0000 0000 0001"),
+                             (0, 1, "0000 0000 0000 0001"),
+                             (-5, 0, "0000 0000 0000 0001"),
+                             (-2, -2, "0000 0000 0000 0001"),
+                             (-1, -2, "0000 0000 0000 0001"),
+                             (2, 0, "0000 0000 0000 0001")
+                         ])
+def test_card_number_generator(start, stop, result):
+    gen = card_number_generator(start, stop)
 
     assert next(gen) == result
 

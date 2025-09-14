@@ -1,7 +1,5 @@
 from typing import Iterator
 
-# import random
-
 
 def filter_by_currency(transactions: list, currency: str) -> Iterator:
     """Функция-генератор принимает список словарей, представляющих транзакции и вид валюты,
@@ -15,12 +13,12 @@ def filter_by_currency(transactions: list, currency: str) -> Iterator:
     else:
         for operation in transactions:
             if any(
-                currency_data == currency
-                for values in operation.values()
-                if type(values) is dict
-                for value in values.values()
-                if type(value) is dict
-                for currency_data in value.values()
+                    currency_data == currency
+                    for values in operation.values()
+                    if type(values) is dict
+                    for value in values.values()
+                    if type(value) is dict
+                    for currency_data in value.values()
             ):
                 operations_list.append(operation)
         if len(operations_list) == 0:
@@ -61,11 +59,13 @@ def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> Itera
     """Функция генератор которая принимает значения диапазона чисел,
     и генерирует номера банковских карт в 16 значном формате "XXXX XXXX XXXX XXXX",
     где X — цифра номера карты."""
+    if stop < start:
+        stop, start = start, stop
+    if start <= 0:
+        start = 1
+    if stop <= 0:
+        stop = 1
     for random_number in range(start, stop + 1):
-        # while True:
-        #     random_number = (random.randint(start, stop))
-        if random_number <= 0:
-            random_number = 1
         str_number = f"{random_number:016d}"
         card_number = f"{str_number[0:4]} {str_number[4:8]} {str_number[8:-4]} {str_number[-4:]}"
         yield card_number
