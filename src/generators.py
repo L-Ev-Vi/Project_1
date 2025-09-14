@@ -4,7 +4,7 @@ from typing import Iterator
 
 
 def filter_by_currency(transactions: list, currency: str) -> Iterator:
-    """ Функция-генератор принимает список словарей, представляющих транзакции и вид валюты,
+    """Функция-генератор принимает список словарей, представляющих транзакции и вид валюты,
     результатом функции является итератор, который поочередно выдает транзакции."""
     operations_list = []
     if not transactions:
@@ -14,8 +14,14 @@ def filter_by_currency(transactions: list, currency: str) -> Iterator:
             # break
     else:
         for operation in transactions:
-            if any(currency_data == currency for values in operation.values() if type(values) is dict for value
-                   in values.values() if type(value) is dict for currency_data in value.values()):
+            if any(
+                currency_data == currency
+                for values in operation.values()
+                if type(values) is dict
+                for value in values.values()
+                if type(value) is dict
+                for currency_data in value.values()
+            ):
                 operations_list.append(operation)
         if len(operations_list) == 0:
             while True:
@@ -56,8 +62,8 @@ def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> Itera
     и генерирует номера банковских карт в 16 значном формате "XXXX XXXX XXXX XXXX",
     где X — цифра номера карты."""
     for random_number in range(start, stop + 1):
-    # while True:
-    #     random_number = (random.randint(start, stop))
+        # while True:
+        #     random_number = (random.randint(start, stop))
         if random_number <= 0:
             random_number = 1
         str_number = f"{random_number:016d}"
