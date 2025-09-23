@@ -9,7 +9,6 @@ def test_log_output_to_the_console():
         # noinspection PyUnreachableCode
         retune_resul("Hello, World! ")
         cap = capsys.readouterr()
-        assert cap.out == (f"{datetime.datetime.now()}\n"
-                           "retune_resul(n)\n"
-                           "Hello, World! "
-                           "Hello, World! Hello, World!\n")
+        assert cap.out == (f"Время вызова: {datetime.datetime.now()}\n"
+                           "Функция: retune_resul(n)\n"
+                           "Результат: Hello, World! Hello, World!\n")
