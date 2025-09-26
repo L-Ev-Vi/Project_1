@@ -18,8 +18,7 @@ def test_log_output_to_the_console(capsys):
     assert captured.out == (
         f"Дата и время вызова: {(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')}\n"
         f"Функция: retune_resul\n"
-        f"Результат: Hello, World! Hello, World! \n"
-        f"Время выполнения 0:00:00\n\n"
+        f"Результат: Hello, World! Hello, World! \n\n"
     )
 
 
@@ -36,8 +35,7 @@ def test_log_output_to_the_console_error(capsys):
     assert captured.out == (
         f"Дата и время вызова: {(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')}\n"
         f"Функция: retune_resul_error\n"
-        f"Результат: retune_resul_error error: ValueError, Inputs: {((0,), {})}\n"
-        f"Время выполнения 0:00:00\n\n"
+        f"Результат: retune_resul_error error: ValueError, Inputs: {((0,), {})}\n\n"
     )
 
 
@@ -56,8 +54,7 @@ def test_log_output_to_the_console_err(capsys):
     assert captured.out == (
         f"Дата и время вызова: {(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')}\n"
         f"Функция: funcs\n"
-        f"Результат: funcs error: TypeError, Inputs: {(("5",), {})}\n"
-        f"Время выполнения 0:00:00\n\n"
+        f"Результат: funcs error: TypeError, Inputs: {(("5",), {})}\n\n"
     )
 
 
@@ -76,8 +73,7 @@ def test_log_console(capsys):
     assert captured.out == (
         f"Дата и время вызова: {(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')}\n"
         f"Функция: funcs\n"
-        f"Результат: ok\n"
-        f"Время выполнения 0:00:00\n\n"
+        f"Результат: ok\n\n"
     )
 
 
@@ -98,7 +94,6 @@ def test_log_file():
             f"Дата и время вызова: {(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')}\n"
             f"Функция: log_in_file\n"
             "Результат: HelloHello\n"
-            "Время выполнения 0:00:00\n"
             ""
         )
     assert result == x
@@ -122,7 +117,6 @@ def test_log_file_err():
             f"Дата и время вызова: {(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')}\n"
             f"Функция: log_in_file\n"
             f"Результат: log_in_file error: TypeError, Inputs: {(("2",), {})}\n"
-            "Время выполнения 0:00:00\n"
             ""
         )
     assert result == x
