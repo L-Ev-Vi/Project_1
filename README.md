@@ -209,4 +209,4 @@ src — пакет c модулями, которые тестируем.
 ### Цель проекта
 Повышения уровня финансовой грамотности и эффективности управления личным временем и финансами.
 
-https://images.techinsider.ru/upload/img_cache/761/761cc2dc61090b0411ca5366422a1eca_ce_1024x683x0x0_cropped_510x340.webp
+![Python](https://images.techinsider.ru/upload/img_cache/761/761cc2dc61090b0411ca5366422a1eca_ce_1024x683x0x0_cropped_510x340.webp)
