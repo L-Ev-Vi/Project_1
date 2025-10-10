@@ -2,14 +2,12 @@ import json
 import logging
 from json import JSONDecodeError
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    filemode="w",
-    filename="../logs/utils.log",
-    encoding="UTF-8",
-    format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s",
-)
 util_logger = logging.getLogger(__name__)
+file_handler = logging.FileHandler("../logs/utils.log", "w", encoding="UTF-8")
+file_formatter = logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
+file_handler.setFormatter(file_formatter)
+util_logger.addHandler(file_handler)
+util_logger.setLevel(logging.DEBUG)
 
 
 def from_json_to_list(file: str) -> list:

@@ -1,14 +1,12 @@
 import logging
 from typing import Optional
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    filemode="w",
-    filename="../logs/masks.log",
-    encoding="UTF-8",
-    format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s",
-)
 mask_logger = logging.getLogger(__name__)
+file_handler = logging.FileHandler("../logs/masks.log", "w", encoding="UTF-8")
+file_formatter = logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
+file_handler.setFormatter(file_formatter)
+mask_logger.addHandler(file_handler)
+mask_logger.setLevel(logging.DEBUG)
 
 
 def get_mask_card_number(number_card: Optional[int] = None) -> str:
