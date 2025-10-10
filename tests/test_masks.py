@@ -26,14 +26,14 @@ def test_get_mask_card_number_negative():
     with pytest.raises(TypeError) as info:
         get_mask_card_number("Card")
 
-    assert str(info.value) == "Указан не верный номер карты"
+    assert str(info.value) == "Указан не верный формат номера карты: <class 'str'> Card"
 
 
 def test_get_mask_card_number_negative_non():
     with pytest.raises(TypeError) as info:
         get_mask_card_number()
 
-    assert str(info.value) == "Указан не верный номер карты"
+    assert str(info.value) == "Указан не верный формат номера карты: <class 'NoneType'> None"
 
 
 @pytest.mark.parametrize(
@@ -51,4 +51,4 @@ def test_get_mask_account_negative_non():
     with pytest.raises(TypeError) as info:
         get_mask_account()
 
-    assert str(info.value) == "Ошибка ввода"
+    assert str(info.value) == "Указан не верный формат номера счёта: <class 'NoneType'> None"

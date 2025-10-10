@@ -79,16 +79,11 @@ class TestFrom(unittest.TestCase):
     # Тест когда не возможно декодировать json-данные
     @patch("builtins.open")
     def test_from_json_to_list_json_decode_error(self, mock_opens):
-        read_data = json.dumps(
-            {
-                'id': 939719570,
-                'state': 'EXECUTED',
-                'date': '2018-06-30T02:08:58.425572',
-                'operationAmount': {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
-                "description": "Перевод организации",
-                "from": "Счет 75106830613657916952",
-                "to": "Счет 11776614605963066702",
-            }
+        read_data = (
+            "{'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572', "
+            "'operationAmount': {'amount': '9824.07', 'currency': {'name': 'USD', 'code': 'USD'}}, "
+            "'description': 'Перевод организации', 'from ': 'Счет 75106830613657916952', "
+            "'to': 'Счет 11776614605963066702',}"
         )
 
         mock_open(mock=mock_opens, read_data=read_data)
