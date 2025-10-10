@@ -26,9 +26,9 @@ def log(filename: Optional[str] = None) -> Any:
             # lead_time = f"Время выполнения {":".join(str(end - start_time).split('.')[:1])}"
             if filename:
                 with open("../data/" + filename, "a", encoding="UTF-8") as f:
-                    f.write(f"{call_time}\n{function_name}\n{execution_result}\n")
+                    f.write(f"{call_time}\n{function_name}\n{execution_result}\n\n")
             else:
-                print(f"{call_time}\n{function_name}\n{execution_result}\n")
+                print(f"{call_time}\n{function_name}\n{execution_result}\n\n")
 
             return result_fanc
 

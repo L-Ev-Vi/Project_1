@@ -13,12 +13,12 @@ def filter_by_currency(transactions: list, currency: str) -> Iterator:
     else:
         for operation in transactions:
             if any(
-                    currency_data == currency
-                    for values in operation.values()
-                    if type(values) is dict
-                    for value in values.values()
-                    if type(value) is dict
-                    for currency_data in value.values()
+                currency_data == currency
+                for values in operation.values()
+                if type(values) is dict
+                for value in values.values()
+                if type(value) is dict
+                for currency_data in value.values()
             ):
                 operations_list.append(operation)
         if len(operations_list) == 0:
