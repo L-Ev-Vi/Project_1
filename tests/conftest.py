@@ -96,3 +96,22 @@ def list_transactions():
             "to": "Счет 75651667383060284188",
         },
     ]
+
+
+@pytest.fixture
+def data_csv():
+    return ("id;state;date;amount;currency_name;currency_code;from;to;description\n"
+            "650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;Счет 39745660563456619397;"
+            "Перевод организации\n"
+            "3598919;EXECUTED;2020-12-06T23:00:58Z;29740;Peso;COP;Discover 3172601889670065;Discover 0720428384694643;"
+            "Перевод с карты на карту")
+
+
+@pytest.fixture
+def data_xlsx():
+    data = {
+        'id': [650703], 'state': ['EXECUTED'], 'date': ['2023-09-05T11:30:32Z'], 'amount': [16210],
+        'currency_name': ['Sol'],
+        'currency_code': ['PEN'], 'from': ['Счет 58803664561298323391'], 'to': ['Счет 39745660563456619397'],
+        'description': ['Перевод организации']}
+    return data

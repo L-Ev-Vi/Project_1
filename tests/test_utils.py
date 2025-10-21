@@ -14,7 +14,7 @@ def test_from_json_to_list_not_file():
 
 class TestFrom(unittest.TestCase):
 
-    # Тест когда указанного файла существует
+    # Тест когда указанный файл существует
     @patch("builtins.open")
     def test_from_json_to_list_one(self, mock_opens):
         read_data = json.dumps(
@@ -44,7 +44,7 @@ class TestFrom(unittest.TestCase):
                     "from": "Счет 75106830613657916952",
                     "to": "Счет 11776614605963066702",
                 }
-            ],
+            ]
         )
         mock_opens.assert_called_once_with("../data/file.json", "r", encoding="UTF-8")
 
