@@ -3,7 +3,7 @@ name = "project-1"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Evgenii_Lobachev",email = "lobachev_e_96@mail.ru"}
+    {name = "Evgenii_Lobachev",email = "lobachev9614@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13"
@@ -35,7 +35,7 @@ pytest-cov = "^7.0.0"
 [tool.mypy]
 disallow_untyped_defs = true
 warn_return_any = true
-exclude = ['.venv','tests', 'idea', 'git']
+exclude = ['.venv','tests', 'idea', 'git', '.coverage',]
 
 [tool.isort]
 profile = "black"
@@ -49,6 +49,7 @@ exclude = '''
       \.git
       \.idea
       \.venv
+      \.coverage
   )/
 )
 '''
