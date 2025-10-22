@@ -2,8 +2,6 @@ import json
 import unittest
 from unittest.mock import mock_open, patch
 
-import pytest
-
 from src.utils import from_json_to_list
 
 
@@ -44,7 +42,7 @@ class TestFrom(unittest.TestCase):
                     "from": "Счет 75106830613657916952",
                     "to": "Счет 11776614605963066702",
                 }
-            ]
+            ],
         )
         mock_opens.assert_called_once_with("../data/file.json", "r", encoding="UTF-8")
 

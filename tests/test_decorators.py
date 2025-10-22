@@ -2,8 +2,6 @@ import datetime
 import unittest
 from unittest.mock import patch
 
-import pytest
-
 from src.decorators import log
 
 

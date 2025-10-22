@@ -2,7 +2,7 @@ import logging
 from typing import Optional
 
 mask_logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler("../logs/masks.log", "w", encoding="UTF-8")
+file_handler = logging.FileHandler("logs/masks.log", "w", encoding="UTF-8")
 file_formatter = logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(file_formatter)
 mask_logger.addHandler(file_handler)
