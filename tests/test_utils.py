@@ -2,8 +2,6 @@ import json
 import unittest
 from unittest.mock import mock_open, patch
 
-import pytest
-
 from src.utils import from_json_to_list
 
 
@@ -14,7 +12,7 @@ def test_from_json_to_list_not_file():
 
 class TestFrom(unittest.TestCase):
 
-    # Тест когда указанного файла существует
+    # Тест когда указанный файл существует
     @patch("builtins.open")
     def test_from_json_to_list_one(self, mock_opens):
         read_data = json.dumps(
