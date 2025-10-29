@@ -44,7 +44,7 @@ class TestFrom(unittest.TestCase):
                 }
             ],
         )
-        mock_opens.assert_called_once_with("../data/file.json", "r", encoding="UTF-8")
+        mock_opens.assert_called_once_with("data/file.json", "r", encoding="UTF-8")
 
     # Тест когда указанного файла не содержит элемент массив (list)
     @patch("builtins.open")
@@ -63,7 +63,7 @@ class TestFrom(unittest.TestCase):
 
         mock_open(mock=mock_opens, read_data=read_data)
         self.assertEqual(from_json_to_list("file.json"), [])
-        mock_opens.assert_called_once_with("../data/file.json", "r", encoding="UTF-8")
+        mock_opens.assert_called_once_with("data/file.json", "r", encoding="UTF-8")
 
     # Тест когда указанного файла содержит пустой массив (list)
     @patch("builtins.open")
@@ -72,7 +72,7 @@ class TestFrom(unittest.TestCase):
 
         mock_open(mock=mock_opens, read_data=read_data)
         self.assertEqual(from_json_to_list("file.json"), [])
-        mock_opens.assert_called_once_with("../data/file.json", "r", encoding="UTF-8")
+        mock_opens.assert_called_once_with("data/file.json", "r", encoding="UTF-8")
 
     # Тест когда не возможно декодировать json-данные
     @patch("builtins.open")
@@ -86,4 +86,4 @@ class TestFrom(unittest.TestCase):
 
         mock_open(mock=mock_opens, read_data=read_data)
         self.assertEqual(from_json_to_list("file.json"), [])
-        mock_opens.assert_called_once_with("../data/file.json", "r", encoding="UTF-8")
+        mock_opens.assert_called_once_with("data/file.json", "r", encoding="UTF-8")
