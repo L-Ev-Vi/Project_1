@@ -7,7 +7,7 @@ from .masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(data: Optional[str] = None) -> str:
     """Принимать одну строку, содержащую тип и номер карты или счета.
-    Возвращать строку с замаскированным номером."""
+    Возвращает строку с замаскированным номером."""
     if not isinstance(data, str):
         raise TypeError("Ошибка ввода")
     else:
