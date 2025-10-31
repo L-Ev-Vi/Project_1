@@ -1,5 +1,5 @@
 from src.generators import filter_by_currency, transaction_descriptions
-from src.processing import filter_by_state, process_bank_search, sort_by_date
+from src.processing import filter_by_state, process_bank_operations, process_bank_search, sort_by_date
 from src.reading_csv_and_xlsx import from_csv_to_list, from_xlsx_to_list
 from src.utils import from_json_to_list
 from src.widget import get_date, mask_account_card
@@ -81,6 +81,13 @@ def main() -> None:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
 
     else:
+        categories_list = list(
+            set(operation["description"] for operation in final_list if operation.get("description"))
+        )
+        print("Категория операции: количество\n")
+        for bank_operations, quantity in process_bank_operations(final_list, categories_list).items():
+            print(f"{bank_operations}: {quantity}")
+        print()
         for operation in final_list:
             if operation.get("from"):
                 requisites = (
