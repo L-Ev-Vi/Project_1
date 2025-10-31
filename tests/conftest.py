@@ -103,72 +103,58 @@ def data_csv():
     return (
         "id;state;date;amount;currency_name;currency_code;from;to;description\n"
         "650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;Счет 39745660563456619397;"
-        "Перевод организации"
+        "Перевод организации\n"
+        "3967324;EXECUTED;2021-05-22T07:46:10Z;30809;Peso;PHP;;Счет 99143269778241825075;Открытие вклада"
     )
 
 
 @pytest.fixture
 def data_xlsx():
     data = {
-        "id": [650703],
-        "state": ["EXECUTED"],
-        "date": ["2023-09-05T11:30:32Z"],
-        "amount": [16210.0],
-        "currency_name": ["Sol"],
-        "currency_code": ["PEN"],
-        "from": ["Счет 58803664561298323391"],
-        "to": ["Счет 39745660563456619397"],
-        "description": ["Перевод организации"],
+        "id": [650703, 3967324],
+        "state": ["EXECUTED", "EXECUTED"],
+        "date": ["2023-09-05T11:30:32Z", "2021-05-22T07:46:10Z"],
+        "amount": [16210.0, 30809.0],
+        "currency_name": ["Sol", "Peso"],
+        "currency_code": ["PEN", "PHP"],
+        "from": ["Счет 58803664561298323391", None],
+        "to": ["Счет 39745660563456619397", "Счет 99143269778241825075"],
+        "description": ["Перевод организации", "Открытие вклада"],
     }
+
     return data
 
 
 @pytest.fixture
 def data_list():
-    return [{
-        "id": 939719570,
-        "state": "EXECUTED",
-        "date": "2018-06-30T02:08:58.425572",
-        "operationAmount": {
-            "amount": "9824.07",
-            "currency": {
-                "name": "USD",
-                "code": "USD"
-            }
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
         },
-        "description": "Перевод организации",
-        "from": "Счет 75106830613657916952",
-        "to": "Счет 11776614605963066702"
-    },
         {
             "id": 587085106,
             "state": "EXECUTED",
             "date": "2018-03-23T10:45:06.972075",
-            "operationAmount": {
-                "amount": "48223.05",
-                "currency": {
-                    "name": "руб.",
-                    "code": "RUB"
-                }
-            },
+            "operationAmount": {"amount": "48223.05", "currency": {"name": "руб.", "code": "RUB"}},
             "description": "Открытие вклада",
-            "to": "Счет 41421565395219882431"
+            "to": "Счет 41421565395219882431",
         },
         {
             "id": 142264268,
             "state": "EXECUTED",
             "date": "2019-04-04T23:20:05.206878",
-            "operationAmount": {
-                "amount": "79114.93",
-                "currency": {
-                    "name": "USD",
-                    "code": "USD"
-                }
-            },
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
             "description": "Перевод со счета на счет",
             "from": "Счет 19708645243227258542",
-            "to": "Счет 75651667383060284188"
-        }]
+            "to": "Счет 75651667383060284188",
+        },
+    ]
 
 
 @pytest.fixture

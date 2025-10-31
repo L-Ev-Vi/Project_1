@@ -16,7 +16,7 @@ def filter_by_state(original_list: list, status: str = "EXECUTED") -> list[dict]
         return []
     else:
         for operation in original_list:
-            if operation["state"] == status:
+            if operation.get("state") == status:
                 new_list.append(operation)
         return new_list
 
@@ -38,7 +38,7 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
     Функция, принимает список словарей с данными о банковских операциях и строку поиска, а возвращает список словарей,
     у которых в описании (в 'description') есть данная строка.
     """
-    new_list = [case for case in data if re.search(f'({search})', str(case.get("description")), flags=re.I)]
+    new_list = [case for case in data if re.search(f"({search})", str(case.get("description")), flags=re.I)]
 
     return new_list
 
@@ -54,6 +54,7 @@ def process_bank_operations(data: list[dict], categories: list) -> dict:
             counter_operations[category] = 0
 
     return counter_operations
+
 
 # if __name__ == '__main__':
 #     with open('data/operations.json', 'r', encoding='utf-8') as file:
