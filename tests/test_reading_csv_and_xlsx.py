@@ -22,13 +22,19 @@ def test_from_csv_to_list(mock_op, data_csv):
             "id": 650703,
             "state": "EXECUTED",
             "date": "2023-09-05T11:30:32Z",
-            "amount": "16210",
-            "currency_name": "Sol",
-            "currency_code": "PEN",
-            "from": "Счет 58803664561298323391",
-            "to": "Счет 39745660563456619397",
+            "operationAmount": {"amount": "16210.0", "currency": {"name": "Sol", "code": "PEN"}},
             "description": "Перевод организации",
-        }
+            "to": "Счет 39745660563456619397",
+            "from": "Счет 58803664561298323391",
+        },
+        {
+            "id": 3967324,
+            "state": "EXECUTED",
+            "date": "2021-05-22T07:46:10Z",
+            "operationAmount": {"amount": "30809.0", "currency": {"name": "Peso", "code": "PHP"}},
+            "description": "Открытие вклада",
+            "to": "Счет 99143269778241825075",
+        },
     ]
     mock_op.assert_called_once_with("data/file.csv", "r", encoding="UTF-8", newline="")
 
@@ -41,12 +47,18 @@ def test_from_xlsx_to_list(mock_df, data_xlsx):
             "id": 650703,
             "state": "EXECUTED",
             "date": "2023-09-05T11:30:32Z",
-            "amount": "16210.0",
-            "currency_name": "Sol",
-            "currency_code": "PEN",
-            "from": "Счет 58803664561298323391",
-            "to": "Счет 39745660563456619397",
+            "operationAmount": {"amount": "16210.0", "currency": {"name": "Sol", "code": "PEN"}},
             "description": "Перевод организации",
-        }
+            "to": "Счет 39745660563456619397",
+            "from": "Счет 58803664561298323391",
+        },
+        {
+            "id": 3967324,
+            "state": "EXECUTED",
+            "date": "2021-05-22T07:46:10Z",
+            "operationAmount": {"amount": "30809.0", "currency": {"name": "Peso", "code": "PHP"}},
+            "description": "Открытие вклада",
+            "to": "Счет 99143269778241825075",
+        },
     ]
     mock_df.assert_called_once_with("data/file.xlsx", sheet_name="Лист 1")

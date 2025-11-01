@@ -1,6 +1,6 @@
 import pytest
 
-from src.processing import filter_by_state, sort_by_date
+from src.processing import filter_by_state, process_bank_operations, process_bank_search, sort_by_date
 
 
 def test_filter_by_state_positive(list_dic):
@@ -92,3 +92,66 @@ def test_sort_by_date_positive_positive_rivers(list_dic):
 )
 def test_sort_by_date_positive(list_d, result):
     assert sort_by_date(list_d) == result
+
+
+def test_process_bank_search_title(data_list):
+    assert process_bank_search(data_list, "Перевод") == [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        },
+    ]
+
+
+def test_process_bank_search_lower(data_list):
+    assert process_bank_search(data_list, "вклад") == [
+        {
+            "id": 587085106,
+            "state": "EXECUTED",
+            "date": "2018-03-23T10:45:06.972075",
+            "operationAmount": {"amount": "48223.05", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Открытие вклада",
+            "to": "Счет 41421565395219882431",
+        },
+    ]
+
+
+def test_process_bank_search_upper(data_list):
+    assert process_bank_search(data_list, "ВКЛАД") == [
+        {
+            "id": 587085106,
+            "state": "EXECUTED",
+            "date": "2018-03-23T10:45:06.972075",
+            "operationAmount": {"amount": "48223.05", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Открытие вклада",
+            "to": "Счет 41421565395219882431",
+        },
+    ]
+
+
+def test_process_bank_search_not(data_list):
+    assert process_bank_search(data_list, "обналичивание") == []
+
+
+def test_process_bank_operations(data_list, categories_list):
+    result = process_bank_operations(data_list, categories_list)
+    assert result == {"Перевод со счета на счет": 1, "Открытие вклада": 1, "Перевод организации": 1}
+
+
+def test_process_bank_operations_excess(data_list, categories_list_excess):
+    result = process_bank_operations(data_list, categories_list_excess)
+    assert result == {"Перевод организации": 1, "Обналичивание": 0, "Неизвестная операция": 0}

@@ -15,7 +15,7 @@ def from_json_to_list(file: str) -> list:
     Если файл пустой, содержит не список или не найден, функция возвращает пустой список."""
     util_logger.info("Запуск программы почтению json файла")
     try:
-        with open("../data/" + file, "r", encoding="UTF-8") as f:
+        with open("data/" + file, "r", encoding="UTF-8") as f:
             try:
                 data_file = json.load(f)
             except JSONDecodeError:
