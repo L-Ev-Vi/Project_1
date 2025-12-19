@@ -30,5 +30,5 @@ def from_json_to_list(file: str) -> list:
     if len(data_file) == 0:
         util_logger.warning(f"Предупреждение: файл '{file}' содержит пустой список")
         return []
-    util_logger.info(f"Успешное чтение данных из файла '{file}' содержит пустой список")
+    util_logger.info(f"Успешное чтение данных из файла '{file}'")
     return data_file
