@@ -47,8 +47,8 @@
     - и `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python` - для Windows
 4. Скачать и установить [Git](https://git-scm.com/downloads/win);
 5. Загрузить проект в IDE через инструмент *'clone repository'* или команду `git clon`
-   используя ключь: 
-    - SSH: `git@github.com:L-Ev-Vi/Project_1.git`
+   используя ключ: 
+    - GitHub CLI: `gh repo clone L-Ev-Vi/Project_1` для работы из командной строки ОС;
     - или HTTPS: `https://github.com/L-Ev-Vi/Project_1.git`;
 6. Установить зависимости проекта, выполнив команду `poetry install`;
 7. В некоторых случаях может не корректно устанавливаться пакет `dateutil`, в этом случае можно установить пакет в ручную:
